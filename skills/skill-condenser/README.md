@@ -69,4 +69,4 @@ Approval covers only the displayed proposal, action, and destination. A changed
 source invalidates approval. Examples and frontmatter are preserved by default.
 No private target text or review logs should be shared without specific approval.
 
-Created by [parzival-000](https://github.com/parzival-000).
+Created by [parzival-000 / Parzival000](https://github.com/parzival-000).
