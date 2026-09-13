@@ -146,6 +146,12 @@ class Packaging(unittest.TestCase):
             self.assertEqual(target.resolve().parent, trials.resolve())
             shutil.rmtree(target)
 
+    def test_human_docs_are_present_without_personal_paths(self):
+        for relative in ["README.md", "skills/skill-condenser/README.md", "tests/README.md"]:
+            with self.subTest(file=relative):
+                text = (ROOT / relative).read_text(encoding="utf-8")
+                self.assertNotRegex(text, r"(?i)[A-Z]:[\\/]Users[\\/]|/Users/|/home/[a-z0-9_-]+/")
+
 
 if __name__ == "__main__":
     unittest.main()

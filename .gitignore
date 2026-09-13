@@ -1,0 +1,19 @@
+# Private and generated files
+.env
+.env.*
+/private/
+/.local/
+/review-output/
+/.agents/
+/.codex/
+.venv/
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+*.zip
+*.tar
+*.gz
+*.7z

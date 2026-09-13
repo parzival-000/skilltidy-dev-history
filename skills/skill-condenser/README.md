@@ -1,14 +1,12 @@
 # Skill Condenser
 
-Current version: v1.1
-
-Local development: **v1.2 candidate**, pending required testing and owner approval.
+Current version: **v1.2**
 
 Skill Condenser reviews Agent Skills for repeated instructions, wordy explanations,
 and unclear guidance. It is currently used and tested through Codex. It proposes
 edits, explains the reasons, and shows a diff for review before approval.
 
-**Ready for local trial; broader validation incomplete.** The project is being
+**Evaluated locally; broader validation incomplete.** The project is being
 tested and used before a future public release. Preserving behavior is the goal,
 but a shorter file and passing examples do not guarantee equivalent behavior.
 
@@ -89,11 +87,14 @@ establish faster responses or preserved behavior.
 | Check | Recorded result |
 |---|---|
 | Frozen v1.1 programmatic baseline | 33/33 passed on Windows with Python 3.11.9 on 2026-09-13 UTC. The earlier HTTP(S) link-check failure is fixed. |
+| v1.2 development checks | 33/33 and the official authoring validator passed on 2026-09-13 UTC before version approval. |
+| Repository test suite | 32/32 passed on Windows with Python 3.11.9 on 2026-09-13. Historical local checks are separate. |
+| Current functional evaluation | 20 matched audits; 24 paired behavior runs / 48 passing responses; six passing application checks. Audit failures and six focused regression reviews are documented in the evaluation report. |
 | Official authoring validator | Frozen v1.1 passed on 2026-09-13 UTC using the already installed validator and PyYAML. |
 | Historical formatter comparison | The 918-word original and exact 640-word candidate each passed ten cases, plus one explanation-mode assessment each in the earlier evaluation. |
 | Historical v1.1 reporting checks | Focused UNCHANGED and instrumented path-order checks passed. |
 
-Required checks and owner approval precede any v1.2 designation.
+The owner approved v1.2 on 2026-09-13.
 
 <details>
 <summary>Historical evidence and remaining limits</summary>
@@ -101,8 +102,8 @@ Required checks and owner approval precede any v1.2 designation.
 Earlier development runs recorded 33 passing programmatic tests and focused
 audit, approval, and section checks. These are historical results. The separate
 694-word proposal was not the candidate used for the paired formatter comparison.
-The target skill's explanation-mode ambiguity remains unresolved, but the v1.2
-candidate now detects and reports it.
+The target skill's explanation-mode ambiguity remains unresolved, but v1.2
+now detects and reports it.
 
 Evaluations used fresh contexts with shared filesystem permissions. Exact host
 model settings were unavailable, and some actions were self-reported. The earlier
@@ -136,6 +137,10 @@ Private target text and review logs should not be shared without specific approv
 The installable skill consists of six files: `SKILL.md`, this README,
 `agents/openai.yaml`, `references/reporting.md`, `references/review-patterns.md`,
 and `scripts/measure.py`.
+
+The full repository includes the measurement and packaging tests, their synthetic
+fixtures, and test instructions in `tests/README.md`. These development files
+are outside the installable skill folder.
 
 More hands-on use and validation are planned before publication. A project license
 has not been selected. When reporting a problem, use a small synthetic example and
