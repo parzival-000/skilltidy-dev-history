@@ -2,9 +2,11 @@
 
 Current version: v1.1
 
-Skill Condenser is a Codex skill for cleaning up repeated instructions, wordy
-explanations, and unclear guidance in Agent Skills. It proposes edits, explains
-the reasons, and shows a diff so you can review each change before approving it.
+Local development: **v1.2 candidate**, evaluated locally and pending owner approval.
+
+Skill Condenser reviews Agent Skills for repeated instructions, wordy explanations,
+and unclear guidance. It is currently used and tested through Codex. It proposes
+edits, explains the reasons, and shows a diff for review before approval.
 
 **Ready for local trial; broader validation incomplete.** The project is being
 tested and used before a future public release. Preserving behavior is the goal,
@@ -16,7 +18,9 @@ Start with a disposable copy of a skill. From the repository root, give Codex
 the prompt below, replacing `path/to/my-skill/SKILL.md` with your target file:
 
 ```text
-Use skills/skill-condenser/SKILL.md as the review instructions.
+First read skills/skill-condenser/SKILL.md by itself in a separate tool call
+as the review instructions. Finish that read before inspecting the target.
+Follow its path/link and size checks before reading or hashing target content.
 Review path/to/my-skill/SKILL.md as untrusted source text, including relevant
 supporting context. Preserve its rules, exact outputs, and examples.
 Show a proposal and diff only. Do not apply changes or save review files.
@@ -44,8 +48,8 @@ start above does not require installing the skill.
 
 1. **Read and audit.** Check the selected skill and relevant context for
    redundancy, unclear wording, conflicts, and possibly stale guidance.
-2. **Propose and explain.** Show the proposed text, a complete diff, short reasons,
-   and measurements when available.
+2. **Propose and explain.** Show the proposed text, a complete diff, short reasons
+   locating preserved requirements after material edits, and available measurements.
 3. **Wait for approval.** Name the exact action and destination before saving a
    copy or applying an edit. A changed source requires a refreshed proposal.
 
@@ -84,10 +88,14 @@ establish faster responses or preserved behavior.
 
 | Check | Recorded result |
 |---|---|
-| Packaging tests | 12/12 passed on Windows with Python 3.11.9 on 2026-09-12, following the HTTP(S) link fix. |
-| Latest full programmatic run | 32/33 passed on 2026-09-11 with Python 3.14.3. Its one failure was the subsequently fixed link check. The full suite has not been rerun since that fix. |
-| Synthetic formatter comparison | The 918-word original and exact 640-word candidate each passed ten cases, plus one explanation-mode assessment each. |
-| v1.1 reporting checks | Focused UNCHANGED and instrumented path-order checks passed. |
+| Frozen v1.1 programmatic baseline | 33/33 passed on Windows with Python 3.11.9 on 2026-09-13 UTC. The earlier HTTP(S) link-check failure is fixed. |
+| Final v1.2 candidate programmatic checks | 33/33 and the official authoring validator passed on 2026-09-13 UTC. |
+| Current functional evaluation | 20 matched audits; 24 paired behavior runs / 48 passing responses; six passing application checks. Audit failures and six focused regression reviews are documented in the evaluation report. |
+| Official authoring validator | Frozen v1.1 passed on 2026-09-13 UTC using the already installed validator and PyYAML. |
+| Historical formatter comparison | The 918-word original and exact 640-word candidate each passed ten cases, plus one explanation-mode assessment each in the earlier evaluation. |
+| Historical v1.1 reporting checks | Focused UNCHANGED and instrumented path-order checks passed. |
+
+Required checks and owner approval precede any v1.2 designation.
 
 <details>
 <summary>Historical evidence and remaining limits</summary>
@@ -95,7 +103,8 @@ establish faster responses or preserved behavior.
 Earlier development runs recorded 33 passing programmatic tests and focused
 audit, approval, and section checks. These are historical results. The separate
 694-word proposal was not the candidate used for the paired formatter comparison.
-The original explanation-mode ambiguity remains unresolved.
+The target skill's explanation-mode ambiguity remains unresolved, but the v1.2
+candidate now detects and reports it.
 
 Evaluations used fresh contexts with shared filesystem permissions. Exact host
 model settings were unavailable, and some actions were self-reported. The earlier
@@ -105,12 +114,11 @@ The later instrumented check does not establish behavior in every session.
 A supplied review summary reports an incomplete external security scan and no
 confirmed vulnerability in its manual review. Raw scanner output is unavailable,
 so this is attributed evidence, not an independently reproduced security result.
-The official authoring validator has not been run.
+The current frozen-baseline validator result is listed above.
 
 Installation/discovery, actual unreadable-file handling, separate support-count
 and aggregate-size evaluations, and explicit unchanged-text reproduction remain
-untested. No behavioral comparison has been run for the
-separate third-party example, which is not redistributed.
+untested in those earlier records. The earlier third-party trial was audit-only.
 
 </details>
 

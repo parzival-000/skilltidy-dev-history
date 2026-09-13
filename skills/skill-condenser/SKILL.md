@@ -51,8 +51,9 @@ Protect purpose, scope, triggers, conditions, exceptions, negation, requirement
 strength, approvals, ordering dependencies, thresholds and units, exact outputs,
 identifiers, paths, links, tool names, technical meaning, and legal notices.
 
-Keep target YAML frontmatter, executable code, and all examples unchanged in the
-ordinary candidate. Suggest metadata, code, or example changes separately.
+Keep target YAML frontmatter, executable code, and all examples, including those
+embedded in prose, unchanged in the ordinary candidate. Suggest metadata, code,
+or example changes separately.
 Example deletion, merging, shortening, or relocation needs specific approval,
 even for exact duplicates. Preserve real host-specific tool requirements.
 
@@ -61,11 +62,17 @@ even for exact duplicates. Preserve real host-specific tool requirements.
 1. Identify meaningful repetition, wordy explanations, repeated context, possible
    conflicts, potentially stale rules, vague phrasing, and excessive examples.
    Formatting and reorganization are secondary.
-2. Merge duplicates only when scope, timing, strength, conditions, and exceptions
-   match. Repeated safety reminders or nearby procedural context may be useful.
+2. Compare instructions under their governing headings, prerequisites, and relevant
+   references. Merge duplicates only when scope, timing, strength, conditions, and
+   exceptions match; similar wording alone is insufficient. Repeated safety
+   reminders or nearby procedural context may be useful.
 3. Distinguish conflicts from valid exceptions or environment-specific rules.
    Never choose a winning rule because it appears later or sounds newer. Preserve
    both sides of uncertain conflicts and ask for the intended behavior.
+   Check whether a required step uses a capability prohibited in the same mode
+   or a relevant reference. Without an explicit exception, report the overlap and
+   both plausible readings as unresolved; do not assume a separate preparation
+   phase resolves it. Check unchanged rules too when judging the full proposal.
 4. Flag potentially stale guidance with its evidence and uncertainty. Do not
    delete it or browse to infer obsolescence. Explain any apparent supersession;
    seek confirmation when its interpretation could change behavior.
@@ -74,35 +81,28 @@ even for exact duplicates. Preserve real host-specific tool requirements.
    move material to improve the headline measurement. A conditional heading in
    the main file does not reduce that file's loaded text.
 6. Compare the complete candidate against the constraints, examples, and relevant
-   context. Retain source wording where preservation remains uncertain.
+   context. For each semantic merge or substantial shortening, locate where every
+   affected requirement survives and explain it in the Changed/Removed + Reason
+   notes. Retain source wording where preservation remains uncertain.
 
 Read [review-patterns.md](references/review-patterns.md) when a possible duplicate,
 exception, conflict, or scope boundary needs closer comparison.
 
 ## Report for review
 
-Read [reporting.md](references/reporting.md) for measurement and diff details.
+Read [reporting.md](references/reporting.md) and follow its report, measurement,
+and diff requirements. Keep the constraint checklist internal; detailed
+preservation tables are for evaluation evidence, not ordinary reports.
 
 Start with **PROPOSED**, **REVIEW NEEDED**, or **UNCHANGED**, the exact scope, and
 whether the original is unchanged. A behavior conflict blocks a ready-to-apply
 full candidate. Unrelated edits may be a clearly labeled partial proposal that
 leaves the conflict intact and requires separate approval of that isolated patch.
 
-Show bold before/after word counts and approximate token estimates with separate
-reduction percentages for identical scopes. Use the optional trusted
-`scripts/measure.py`, resolved from this Skill Condenser installation, never a
-same-named target script. Without a trusted calculation, label counts unavailable.
-Python is optional; continue the review when it is missing.
-
-For proposed edits, give short Changed/Removed + Reason notes, relevant review-needed points, a
-complete unified diff, and the complete candidate when practical. Otherwise
-offer a named export destination and ask before writing it. Never silently
-truncate or use ellipses in a purported full replacement. Use text status labels.
-
-State verification actually performed. Do not invent confidence percentages,
-constraint-removal counters, equivalence guarantees, behavior-test results, or
-speed improvements. No-change is successful: do not manufacture edits, export an
-empty file, or ask for approval when there is no change.
+Separate proposed prose edits from unresolved meaning and optional example edits.
+Explain evidence and limitations, not confidence percentages or equivalence claims.
+No-change is successful: do not manufacture edits, export an empty file, or ask
+for approval when there is no change.
 
 ## Approval and application
 

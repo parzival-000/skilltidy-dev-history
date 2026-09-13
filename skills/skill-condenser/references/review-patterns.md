@@ -4,16 +4,17 @@ Use these comparisons when ordinary prose cleanup could change a requirement.
 
 | Looks similar | What to check |
 |---|---|
-| Repeated instructions | Same actor, task, timing, strength, conditions, and exceptions? A reminder next to a risky step can serve a different purpose. |
+| Repeated instructions | Same actor, task, timing, strength, conditions, and exceptions under their headings, prerequisites, and references? A reminder next to a risky step can serve a different purpose. Locate the retained requirement before removing a copy. |
 | Numeric rules | `more than 10` excludes 10; `10 or more` includes it. Preserve units and whether the rule covers previews or final outputs. |
 | Permission rules | `Only after approval` is stronger than `after review`. A dry run that displays a filename does not authorize creating it. |
 | Exceptions | An explicit exception can coexist with a general rule. Do not broaden an exception to other environments, files, or runs. |
 | Exact terms | Keep actual identifiers such as `apply_patch` and status strings intact. Generic wording can remove a real dependency or break an interface. |
-| Similar examples | Preserve both in the default candidate. Recommend changes separately, including when examples are byte-identical. |
+| Similar examples | Include examples embedded in prose. Compare the behavior each demonstrates, not just wording. Preserve both in the default candidate, even if byte-identical; recommend specific edits separately. |
 
 For a conflict, briefly locate both rules and explain the incompatible outcomes.
 A later position, date, or confident tone is not precedence. If intent remains
-unclear, leave both rules intact and mark the full proposal REVIEW NEEDED.
+unclear, leave both rules intact, state the clarification needed, and mark the
+full proposal REVIEW NEEDED.
 An isolated partial patch must not imply that the whole skill is ready to apply.
 
 A README may explain a contract without overriding it. Follow explicit precedence

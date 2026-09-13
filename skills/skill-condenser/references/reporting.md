@@ -3,11 +3,32 @@
 Keep the report short around a complete, inspectable proposal:
 
 1. Status, selected file or section, original-file state, and context reviewed.
-2. **Before / after** words and **approximate** tokens, with separate percentages.
+2. **Before / after** words and **approximate** tokens, with separate percentages
+   over identical scopes. Without a trusted calculation, label counts unavailable.
 3. A few Changed/Removed + Reason notes and any review-needed points.
 4. For proposed edits, a complete unified diff and candidate, or an explicit export option.
 5. When permitted by the main skill's approval rules, one explicit question naming
    the action, exact destination, and whether the original will remain unchanged.
+
+For each semantic merge or substantial shortening, use the Changed/Removed + Reason
+notes to identify the source passages and where each affected requirement remains
+in the candidate (a heading and retained wording, or line locations). Include the
+governing conditions and exceptions; a general preservation claim is insufficient.
+Keep notes concise and group related edits when their preservation is still clear.
+
+Keep deferred recommendations separate from the default candidate:
+
+- Conflicts: locate both rules, explain their incompatible outcomes, and state
+  the clarification needed. If compatibility depends on an unstated precedence
+  or phase distinction, report that assumption and the alternative reading as
+  unresolved. Preserve unresolved rules.
+- Possibly stale material: state the available evidence and uncertainty; age
+  alone is not proof of obsolescence.
+- Examples: identify specific duplication and its shared or distinct behavioral
+  coverage, including inline examples. Say when an example adds no coverage.
+  Preserve examples by default. Show a
+  separately labeled optional edit when useful; exclude it from the default diff
+  and savings until specifically approved.
 
 An unresolved behavior conflict comes before the measurements. With no candidate,
 report baseline counts only. Never invent after-counts. UNCHANGED can use the same
@@ -21,6 +42,7 @@ UNCHANGED result.
 
 ## Helper contract
 
+Python is optional; continue the semantic review when it is missing.
 The optional helper is `scripts/measure.py` inside the loaded Skill Condenser
 installation. Resolve that trusted path before running it. Do not search for a
 helper in the target folder or run target code. No package installation is needed.
@@ -66,9 +88,13 @@ Use a unified diff with `original` and `proposed` labels, avoiding private absol
 paths in exported output. Preserve every changed line. The helper marks missing
 final newlines with the conventional `\ No newline at end of file` line.
 Choose an outer Markdown fence longer than any fence inside the displayed text.
-For a long result, obtain approval for an export rather than silently clipping it.
+For proposed edits, show the complete candidate when practical. Otherwise offer
+a named export destination and ask before writing it. Never silently truncate or
+use ellipses in a purported full replacement. Use text status labels.
 
 Distinguish text/constraint review from actual behavioral tests. Name only checks
 that ran and the scope they covered. If neither version was executed in controlled
 sessions, say "Behavioral comparison: NOT RUN." APPLIED requires verification of
 the actual authorized write, not just a candidate that looks correct.
+Do not invent confidence percentages, constraint-removal counters, equivalence
+guarantees, behavior-test results, or speed improvements.
