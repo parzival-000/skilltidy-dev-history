@@ -3,12 +3,11 @@
 Current version: **v1.2**
 
 Skill Condenser reviews Agent Skills for repeated instructions, wordy explanations,
-and unclear guidance. It is currently used and tested through Codex. It proposes
-edits, explains the reasons, and shows a diff for review before approval.
+and unclear guidance. It proposes edits, explains the reasons, and shows a diff
+for review before approval.
 
 **Evaluated locally; broader validation incomplete.** The project is being
-tested and used before a future public release. Preserving behavior is the goal,
-but a shorter file and passing examples do not guarantee equivalent behavior.
+tested and used before a future public release.
 
 ## Quick start
 
@@ -24,13 +23,13 @@ supporting context. Preserve its rules, exact outputs, and examples.
 Show a proposal and diff only. Do not apply changes or save review files.
 ```
 
-`skills/skill-condenser/SKILL.md` supplies the reviewer instructions.
-`path/to/my-skill/SKILL.md` is the separate skill being reviewed. If you have only
-the downloaded skill folder, provide the actual path to its `SKILL.md` instead.
+`skills/skill-condenser/SKILL.md` guides the review.
+`path/to/my-skill/SKILL.md` is the skill to review. If you downloaded only
+the condenser folder, use its `SKILL.md` path for the review instructions.
 
-You can also select a folder with one identifiable main skill, or request a
-specific section. Supporting files provide context, while proposed edits stay
-within the selected file or section. Ambiguous selections require clarification.
+You can also choose a folder with one clear main skill, or a specific section.
+Supporting files add context. Edits stay within the selected file or section.
+Unclear selections need clarification.
 
 ### Optional skill discovery
 
@@ -48,17 +47,16 @@ start above does not require installing the skill.
    redundancy, unclear wording, conflicts, and possibly stale guidance.
 2. **Propose and explain.** Show the proposed text, a complete diff, short reasons
    locating preserved requirements after material edits, and available measurements.
-3. **Wait for approval.** Name the exact action and destination before saving a
-   copy or applying an edit. A changed source requires a refreshed proposal.
+3. **Wait for approval.** Before saving or editing, state the exact action and
+   destination. Update the proposal if the source changes.
 
 The approach is Balanced, with a conservative safety bias. Rules, conditions,
 exceptions, exact outputs, identifiers, links, and tool boundaries take priority
 over reducing length. Examples and frontmatter stay unchanged by default.
 
-**UNCHANGED** is a valid result and proposes no edits. Conflicting guidance can
-leave a proposal **REVIEW NEEDED** until the intended behavior is clear. There is
-no required reduction percentage, and examples are changed only with specific
-approval.
+**UNCHANGED** means no edits are proposed. Conflicts may leave a proposal marked
+**REVIEW NEEDED** until the intended behavior is clear. There is no reduction
+target. Changing examples needs specific approval.
 
 ## Optional measurements
 
@@ -79,8 +77,7 @@ applies changes or writes output files.
 | Reduction | Before and after compared over the same scope. Supporting references are separate context costs. |
 
 Without usable measurements, the review continues with counts marked unavailable.
-No dependency installation is needed to review a skill. Text savings do not
-establish faster responses or preserved behavior.
+No dependency installation is needed to review a skill.
 
 ## Validation status
 
