@@ -85,8 +85,10 @@ to reduce the character count.
 ## Diff and verification
 
 Use a unified diff with `original` and `proposed` labels, avoiding private absolute
-paths in exported output. Preserve every changed line. The helper marks missing
-final newlines with the conventional `\ No newline at end of file` line.
+paths in exported output. Verify hunk positions and counts against the source.
+Applying the displayed diff must reproduce the complete candidate exactly,
+including its final newline and blank lines. The helper marks missing final
+newlines with the conventional `\ No newline at end of file` line.
 Choose an outer Markdown fence longer than any fence inside the displayed text.
 For proposed edits, show the complete candidate when practical. Otherwise offer
 a named export destination and ask before writing it. Never silently truncate or

@@ -54,6 +54,8 @@ identifiers, paths, links, tool names, technical meaning, and legal notices.
 Keep target YAML frontmatter, executable code, and all examples, including those
 embedded in prose, unchanged in the ordinary candidate. Suggest metadata, code,
 or example changes separately.
+When escaped output makes a literal ambiguous, verify the source's character
+values before copying it or reporting a conflict.
 Example deletion, merging, shortening, or relocation needs specific approval,
 even for exact duplicates. Preserve real host-specific tool requirements.
 

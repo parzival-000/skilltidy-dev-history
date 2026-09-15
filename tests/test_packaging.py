@@ -23,6 +23,10 @@ FIXTURE_FILES = {
     "toy-list/references/format-guide.md", "conflicts/SKILL.input.md",
     "preservation-traps/SKILL.input.md", "preservation-traps/AGENTS.sample.md",
     "already-lean/SKILL.input.md", "untrusted-content/SKILL.input.md",
+    "structured-output/SKILL.input.md", "multilingual/SKILL.input.md",
+    "code-examples/SKILL.input.md", "conditional-reference/SKILL.input.md",
+    "conditional-reference/references/preview.md",
+    "conditional-reference/references/final.md",
 }
 
 

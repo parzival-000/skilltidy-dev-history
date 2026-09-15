@@ -1,0 +1,100 @@
+[
+  {
+    "id": "structured-output-normal",
+    "fixture": "structured-output",
+    "request": "{\"labels\":[\" Box-1 \",\"bin_2\",\"Box-1\"]}",
+    "format": "json",
+    "expected": {"status": "OK", "count": 3, "labels": ["Box-1", "bin_2", "Box-1"]}
+  },
+  {
+    "id": "structured-output-boundary",
+    "fixture": "structured-output",
+    "request": "{\"labels\":[\"Abcdefghijkl\",\"z\",\"z\",\"A_9\"]}",
+    "format": "json",
+    "expected": {"status": "OK", "count": 4, "labels": ["Abcdefghijkl", "z", "z", "A_9"]}
+  },
+  {
+    "id": "structured-output-invalid",
+    "fixture": "structured-output",
+    "request": "{\"labels\":[\"one\",\"two\",\"three\",\"four\",7]}",
+    "format": "json",
+    "expected": {"status": "INVALID", "count": 0, "labels": []}
+  },
+  {
+    "id": "multilingual-normal",
+    "fixture": "multilingual",
+    "request": "es|ready",
+    "format": "text",
+    "expected": "ESTADO: listo\nPRÓXIMO PASO: continuar"
+  },
+  {
+    "id": "multilingual-boundary",
+    "fixture": "multilingual",
+    "request": " \tfr\t | hold\t ",
+    "format": "text",
+    "expected": "ÉTAT : en attente\nSUITE : vérifier"
+  },
+  {
+    "id": "multilingual-invalid",
+    "fixture": "multilingual",
+    "request": "ES|ready",
+    "format": "text",
+    "expected": "LANGUAGE_UNSUPPORTED"
+  },
+  {
+    "id": "code-examples-normal",
+    "fixture": "code-examples",
+    "request": "sh|Ada",
+    "format": "text",
+    "expected": "```sh\nprintf '%s\\n' 'Hello, Ada!'\n```"
+  },
+  {
+    "id": "code-examples-boundary",
+    "fixture": "code-examples",
+    "request": "ps|ABCDEFGHIJKLMNOP",
+    "format": "text",
+    "expected": "```powershell\nWrite-Output 'Hello, ABCDEFGHIJKLMNOP!'\n```"
+  },
+  {
+    "id": "code-examples-invalid",
+    "fixture": "code-examples",
+    "request": "sh|Ada;whoami",
+    "format": "text",
+    "expected": "INVALID REQUEST"
+  },
+  {
+    "id": "conditional-reference-normal",
+    "fixture": "conditional-reference",
+    "request": "{\"mode\":\"preview\",\"items\":[{\"id\":\"apple\",\"quantity\":0},{\"id\":\"apple\",\"quantity\":2}]}",
+    "format": "text",
+    "expected": "PREVIEW: 2\nITEMS: apple=0 | apple=2"
+  },
+  {
+    "id": "conditional-reference-boundary",
+    "fixture": "conditional-reference",
+    "request": "{\"mode\":\"final\",\"items\":[{\"id\":\"pear\",\"quantity\":4},{\"id\":\"pear\",\"quantity\":6}]}",
+    "format": "text",
+    "expected": "FINAL: 2\nITEMS: pear=4 | pear=6\nTOTAL: 10\nCHECK: REQUIRED"
+  },
+  {
+    "id": "conditional-reference-invalid",
+    "fixture": "conditional-reference",
+    "request": "{\"mode\":\"final\",\"items\":[{\"id\":\"apple\",\"quantity\":0}]}",
+    "format": "text",
+    "expected": "FINAL QUANTITY REQUIRED"
+  },
+  {
+    "id": "structured-output-invalid-repeat",
+    "fixture": "structured-output",
+    "request": "{\"labels\":[\"one\",\"two\",\"three\",\"four\",7]}",
+    "format": "json",
+    "expected": {"status": "INVALID", "count": 0, "labels": []}
+  },
+  {
+    "id": "conditional-reference-boundary-repeat",
+    "fixture": "conditional-reference",
+    "request": "{\"mode\":\"final\",\"items\":[{\"id\":\"pear\",\"quantity\":4},{\"id\":\"pear\",\"quantity\":6}]}",
+    "format": "text",
+    "expected": "FINAL: 2\nITEMS: pear=4 | pear=6\nTOTAL: 10\nCHECK: REQUIRED"
+  }
+]
