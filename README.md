@@ -166,7 +166,7 @@ For a problem report, include a small synthetic example, what you expected, what
 happened, and your model/settings if known. Leave private skill text out of shared
 reports.
 
-A project license has not been selected. Public release remains a separate
+Licensed under the [MIT License](LICENSE). Public release remains a separate
 decision requiring review of history, privacy, and redistribution.
 
 Created by [parzival-000 / Parzival000](https://github.com/parzival-000).
