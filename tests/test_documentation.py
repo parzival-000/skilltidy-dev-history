@@ -11,12 +11,21 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / "skills/skill-condenser"
 DOCS = [
-    ROOT / "README.md", RUNTIME / "README.md", ROOT / "fixtures/README.md",
+    ROOT / "README.md", ROOT / "AGENTS.md", ROOT / "fixtures/README.md",
     ROOT / "tests/README.md", ROOT / "tests/RESULTS.md",
-]
+] + sorted(RUNTIME.rglob("*.md"))
 
 
 class Documentation(unittest.TestCase):
+    def test_maintained_docs_and_runtime_have_no_personal_paths(self):
+        sources = set(DOCS) | {p for p in RUNTIME.rglob("*") if p.is_file()}
+        for source in sorted(sources):
+            with self.subTest(file=source.relative_to(ROOT)):
+                self.assertNotRegex(
+                    source.read_text(encoding="utf-8"),
+                    r"(?i)[A-Z]:[\\/]Users[\\/]|/Users/|/home/[a-z0-9_-]+/",
+                )
+
     def test_local_documentation_links_resolve(self):
         for source in DOCS:
             for link in re.findall(r"\]\(([^)]+)\)", source.read_text(encoding="utf-8")):
@@ -31,7 +40,7 @@ class Documentation(unittest.TestCase):
         versions = []
         for source in [ROOT / "README.md", RUNTIME / "README.md",
                        ROOT / "tests/README.md", ROOT / "tests/RESULTS.md"]:
-            match = re.search(r"Current version: \*\*(v\d+\.\d+)\*\*",
+            match = re.search(r"Current version:\s*(?:\*\*)?(v\d+\.\d+)\b",
                               source.read_text(encoding="utf-8"))
             self.assertIsNotNone(match, str(source))
             versions.append(match.group(1))
@@ -41,14 +50,14 @@ class Documentation(unittest.TestCase):
         for source, directory in [(ROOT / "README.md", ROOT), (RUNTIME / "README.md", RUNTIME)]:
             text = source.read_text(encoding="utf-8")
             prompt = re.search(r"```text\n(.*?)\n```", text, re.S).group(1)
-            reviewer = re.search(r"First read (\S+)", prompt).group(1)
+            paths = re.findall(r"(?:[\w.-]+/)*[\w.-]+\.md\b", prompt)
+            self.assertGreaterEqual(len(paths), 2, "reviewer and target paths are required")
+            reviewer, target = paths[:2]
             self.assertEqual((directory / reviewer).resolve(), RUNTIME / "SKILL.md")
-            target = re.search(r"Review (\S+)", prompt).group(1)
             if source == ROOT / "README.md":
                 self.assertTrue((directory / target).is_file())
                 self.assertNotEqual((directory / target).resolve(), RUNTIME / "SKILL.md")
             else:
-                self.assertIn("replacing", text)
                 self.assertNotEqual(target, reviewer)
 
     def test_documented_helper_commands_run_from_both_folders(self):

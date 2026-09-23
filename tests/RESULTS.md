@@ -2,36 +2,53 @@
 
 Current version: **v1.3**
 
-## v1.3 checks
+## Local maintenance, 2026-09-22
 
-Run date: 2026-09-14, Windows, Python 3.11.9, Codex CLI 0.154.0-alpha.6.2.
-The existing CLI used fresh ephemeral sessions with no model or reasoning
-override. Backend model revision, temperature, and seed were not exposed.
+Windows 10 build 19045, Python 3.11.9. Command from the repository root:
 
-| Check | Observed result |
+```powershell
+py -3 -B -m unittest discover -s tests -v
+```
+
+Baseline: **37/37 passed**, no failures or skips. After documentation and test
+maintenance: **36/36 passed** in both the working copy and a clean disposable
+30-file export, with no failures or skips. The removed test constructed
+its own ZIP from a constant list and checked that same list without exercising
+production packaging. Six-file runtime inventory, metadata, inactive fixtures,
+helper behavior, runnable examples, and local links remain checked. Privacy
+checks now cover all maintained guides and runtime files.
+
+Model audits, paired behavior checks, installation/discovery, authoring validator,
+and external scanner: **NOT RUN in this cleanup**. The six runtime files and 14
+fixture input/context files are frozen byte-for-byte. Byte identity supports
+unchanged inputs, not a universal claim about model behavior.
+
+## Historical v1.3 evidence, 2026-09-14
+
+Windows, Python 3.11.9, Codex CLI 0.154.0-alpha.6.2. Fresh ephemeral sessions used
+no model/reasoning override. Backend revision, temperature, and seed were unknown.
+
+| Check | Recorded result |
 |---|---|
-| Automated suite | 37/37 passed in the working copy and a clean export of the staged repository. |
-| Authoring validator | Passed with the already installed validator. |
+| Automated suite | 37/37 passed in the working copy and a clean staged export. |
+| Authoring validator | Passed using the already installed validator. |
 | Final condensation reviews | 4/4 passed independent text, diff, and trace review. |
-| Final-candidate behavior matrix | 14 matched pairs / 28 passing responses, including two repeated cases. |
-| Workflow checks | Eight cases passed, plus three focused regression runs. |
+| Final-candidate behavior | 14 matched pairs / 28 passing responses, including two repeats. |
+| Workflow checks | Eight passed cases and three focused regression runs, with revision limits below. |
 
-The behavior matrix covers the 12 distinct cases and two repeats in
-[behavior_cases.json](behavior_cases.json). The final code and multilingual
-candidates changed, so all six of their original/candidate pairs were rerun:
-12/12 responses passed. The other 16 results were retained only after verifying
-that the final candidates, originals, and supporting files exactly matched their
-previously tested hashes. In total, 40 behavior responses ran and passed.
+That matrix covers the 14 non-toy-list rows in
+[behavior_cases.json](behavior_cases.json). Six code/multilingual pairs were rerun
+after their candidates changed, yielding 12/12 passing responses. The other 16
+responses were reused only after final original/candidate/context hashes matched.
+Across these runs, 40 behavior responses passed. JSON scoring rejected duplicate
+keys and compared exact keys, values, and types. Text allowed at most one final
+newline. Command traces showed conditional tasks reading only their selected
+reference, and behavior input hashes/inventories stayed unchanged.
 
-JSON outputs were parsed with duplicate-key rejection and exact key/value/type
-comparison. Text outputs required exact text, allowing at most one final newline.
-Actual command traces confirmed that conditional tasks read only their selected
-reference. All behavior input hashes and case inventories remained unchanged.
+### Generated candidates
 
-### Final generated candidates
-
-These are whole-file word counts, including metadata and examples, measured
-with the shipped helper. Unchanged references are excluded equally.
+Whole-file words include metadata and examples; unchanged references are excluded
+equally. These are measured historical examples, not reduction targets.
 
 | Fixture | Original | Candidate | Fewer words |
 |---|---:|---:|---:|
@@ -40,12 +57,10 @@ with the shipped helper. Unchanged references are excluded equally.
 | Code examples | 337 | 320 | 5.0% |
 | Conditional reference | 693 | 670 | 3.3% |
 
-Each candidate came from an actual final-runtime review. The test supervisor
-checked the conversation proposal, replayed its displayed diff without fuzzy
-matching, and saved the reconstructed candidate. Markdown fence separators are
-transport, not file content; the source and displayed diff establish the final
-newline. Complete candidates, metadata, code, examples, and requirements were
-also independently inspected. No hand-written candidate replaced a model output.
+Each candidate came from a final-runtime review. The supervisor reconstructed its
+displayed diff without fuzzy matching, using source/diff evidence for final
+newlines rather than Markdown transport fences. Complete text, requirements,
+metadata, code, and examples were inspected. No handwritten replacement was used.
 
 Candidate SHA-256 fingerprints:
 
@@ -56,64 +71,68 @@ code-examples          3312567a3bc724a84f2dc31e1c20c7879c5d7f17a232cc505b81d0aa8
 conditional-reference  26fd76595dd8c928697ed936eea0c26948a1087b86d0f609283edd65da7d33d0
 ```
 
-### Failures found and corrected
+### Failures, corrections, and limits
 
-Four rounds of four audits were retained. An initial multilingual diff had an
-incorrect hunk position. Two later code-example reviews mistook JSON-escaped
-tool output for literal file content, falsely reported a conflict, and doubled
-backslashes in the candidate without including those edits in the diff.
-Those reports failed review and their candidates were rejected.
+Four rounds of four audits were retained. An initial multilingual diff had the
+wrong hunk position. Two later code reviews misread JSON-escaped tool output,
+reported a false conflict, and doubled backslashes without showing those changes
+in the diff. Those reports/candidates failed review. A general decoded-text
+reminder was insufficient. Final instructions require exact diff reconstruction
+and source-character checks when escapes are ambiguous; all four final audits
+passed. Earlier failures remain evidence of limitations.
 
-The final instructions require exact diff reconstruction and source character
-verification when escaped output is ambiguous. A general reminder to use decoded
-text was insufficient and was replaced. The final code review checked actual
-character values, preserved the literals, and reported no false conflict.
-All four final audits passed. This does not erase the earlier failures or
-establish that the model will never repeat them.
+The eight workflow cases covered simulated Python absence, 13 support files,
+more than 1 MiB, exact UNCHANGED reproduction, conflicts, an approved section
+copy, changed-source approval invalidation, and explicit disposable CLI discovery.
+Source hashes stayed unchanged. Only the approved copy was created, with CRLF
+and prefix/suffix bytes preserved.
 
-### Workflow coverage and limits
+Three follow-ups covered missing-Python diff reconstruction, UNCHANGED reproduction,
+and discovery. Only the missing-Python retry used the final wording; the other
+two preceded the last literal-preservation refinement. Rules were not retested
+after every wording revision. UNCHANGED reproduction used LF; CRLF was covered
+in the approved copy. Discovery verified explicit CLI loading, not automatic
+selection or the desktop picker. Cases shared a host filesystem, not OS isolation.
+Bootstrap/approval-policy failures were blocked attempts, then retried within
+permitted scope. Recovered console/read-command errors are not extra passes.
 
-The eight cases covered a preview with Python unavailable, 13 required support
-files, more than 1 MiB of support text, exact UNCHANGED reproduction, conflict
-reporting, an approved section copy, changed-source approval invalidation, and
-explicit discovery in a disposable CLI project. Source hashes stayed unchanged.
-Only the specifically approved copy was created; its CRLF endings and unchanged
-prefix/suffix matched byte-for-byte.
+Cross-host behavior, actual Python absence, actual unreadable-file review, and
+every conditional branch were not established. The conditional fixture's
+common-invalid-input/no-reference branch is a known coverage gap.
 
-Three further runs checked missing-Python diff reconstruction, UNCHANGED
-reproduction, and discovery. The missing-Python retry used the final runtime.
-The other two used the preceding literal-preservation wording. The unchanged
-workflow rules were not retested in every wording revision.
+## Earlier historical evidence
 
-Missing Python was simulated through a controlled unavailable-runtime request.
-Discovery verified an actual read of the copied skill through explicit CLI
-invocation, not desktop picker behavior or automatic selection. UNCHANGED
-reproduction used LF; CRLF was checked separately in the approved copy.
-The cases share a host filesystem and are not OS-isolated.
+| Date / scope | Recorded result and limit |
+|---|---|
+| 2026-09-10, initial build | 33/33 eventually passed on Windows/Python 3.14.3. An earlier 20-test measurement attempt had 26 setup/cleanup errors from temporary-directory permissions. Inherited workspace permissions fixed the setup without weakening expectations. |
+| 2026-09-10, toy formatter | The 918-to-640-word candidate passed B1-B10 for both versions: 20/20 responses. Two explanation responses met content expectations but did not resolve the reference-read/tool-ban ambiguity. The separate 694-word proposal had no paired behavior validation. Exact model/effort identifiers were unavailable. |
+| 2026-09-10, workflow/reporting | Nine approval scenarios and later focused section/path/audit checks were recorded. Inventories, hashes, and applied diffs supported write outcomes; several tool actions were self-reported. Missing explicit approval questions and an UNCHANGED extra-blank-line display were found, then addressed with focused checks. |
+| 2026-09-10, path order | An earlier reported ordering deviation had unverified chronology. A later supervisor-instrumented read-order check passed, without proving all ordinary sessions follow it. A non-shipped calculation miscounted 251 versus 252 characters; the trusted helper cross-check was correct. |
+| 2026-09-11, programmatic suite | 32/33 passed. A local-link test incorrectly treated an HTTPS author URL as a file. This historical test defect is absent from the current passing suite. |
+| 2026-09-13, v1.2 | Approved that day. Maintained suite: 32/32 on Windows/Python 3.11.9. Earlier development suite: 33/33 with additional development-only coverage. |
 
-Initial sandbox/bootstrap and approval-policy failures were kept as blocked
-attempts, then retried with permitted case-local paths and automatic approval
-review. Console encoding and read-command syntax errors were recovered without
-changing targets. These attempts are not counted as additional passing cases.
+The v1.2 evaluation recorded 20 matched audits, 24 behavior pairs (22 scenarios
+and two repeats, 48 passing responses), six passing application checks, and six
+additional regression reviews. It used the existing CLI with requested
+gpt-6-astra/xhigh settings in fresh sessions, excluding project guidance and keys.
+Backend revision, temperature, and seed were not exposed. The validator passed
+with already installed tools.
 
-Cross-host compatibility, actual Python absence, actual unreadable-file handling,
-and every conditional branch remain outside this evidence. In particular, the
-new conditional fixture's common-invalid/no-reference branch is not in this
-matrix. Raw traces and rejected proposals remain local.
+Both initial formatter audits missed explanation-mode ambiguity, and the first
+reporting correction also failed. The final targeted candidate review stated both
+readings and returned REVIEW NEEDED. A procedural holdout read target content too
+early. Both later read-order checks passed, but one export failed with write
+errors, proving only the narrow ordering result. Reused holdouts were regression
+checks, not fresh holdout successes. A six-versus-seven-column answer-key error
+received a source-based erratum before scoring, applied equally to both versions.
 
-## Historical results
+The 48 behavior responses validate their exact earlier generated candidates.
+Later reviewer refinements did not receive another complete fresh-candidate
+matrix. A third-party coauthoring sample retained unresolved tool wording and
+lacked redistribution clearance. Its raw content remains private.
 
-v1.2 was approved on 2026-09-13. The maintained repository suite passed 32/32
-checks on Windows with Python 3.11.9 that day. Earlier local development checks
-passed 33/33 with additional development-only coverage.
-
-The saved v1.2 evaluation recorded 20 matched audits, 24 paired behavior runs
-(22 distinct scenarios and two repeats, producing 48 passing responses), six
-passing application checks, and six focused regression reviews. Audit failures
-and subsequent corrections remain recorded in local development evidence.
-The 48 responses were tied to candidates generated before the final reviewer
-refinements. They do not validate every candidate generated by later instructions.
-
-Earlier formatter comparisons and optional authoring-validator results remain
-historical. No external security certification is claimed. Raw evaluation traces
-and third-party samples stay local.
+A historical screenshot reported SkillSpector 2.11.1, exit 1, MEDIUM/CAUTION and
+83.3% coverage. It described an incomplete scan and no confirmed vulnerability
+in its manual review. Raw scanner output was unavailable. The v1.2 manual
+assessment remained CAUTION with no fresh scan. Neither is security certification.
+Raw traces, rejected proposals, and third-party samples remain local.

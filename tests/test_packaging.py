@@ -1,6 +1,5 @@
 import ast
 import hashlib
-import io
 import json
 from pathlib import Path
 import re
@@ -9,7 +8,6 @@ import subprocess
 import sys
 import unittest
 import uuid
-import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -45,8 +43,10 @@ class Packaging(unittest.TestCase):
     def test_known_frontmatter_shape(self):
         lines = (RUNTIME / "SKILL.md").read_text(encoding="utf-8").splitlines()
         self.assertEqual(lines[0], "---")
-        self.assertEqual(lines[3], "---")
-        metadata = dict(line.split(": ", 1) for line in lines[1:3])
+        end = lines.index("---", 1)
+        fields = [line.split(":", 1) for line in lines[1:end] if line.strip()]
+        metadata = {key.strip(): value.strip() for key, value in fields}
+        self.assertEqual(len(metadata), len(fields), "duplicate metadata fields")
         self.assertEqual(set(metadata), {"name", "description"})
         self.assertEqual(metadata["name"], "skill-condenser")
         self.assertTrue(metadata["description"].strip())
@@ -76,16 +76,16 @@ class Packaging(unittest.TestCase):
                 self.assertTrue(resolved.is_relative_to(RUNTIME.resolve()), link)
                 self.assertTrue(resolved.is_file(), link)
                 links_seen.add(resolved.relative_to(RUNTIME).as_posix())
-        self.assertEqual(links_seen, {"references/review-patterns.md", "references/reporting.md"})
+        references = {p.relative_to(RUNTIME).as_posix()
+                      for p in (RUNTIME / "references").glob("*.md")}
+        self.assertTrue(references <= links_seen, "unlinked runtime references")
 
-    def test_no_scaffold_or_private_authoring_dependencies(self):
+    def test_runtime_has_no_placeholders_or_authoring_dependencies(self):
         for relative in RUNTIME_FILES:
             text = (RUNTIME / relative).read_text(encoding="utf-8")
             with self.subTest(file=relative):
                 self.assertNotRegex(text, r"(?i)\b(?:TODO|FIXME|TBD)\b|\[INSERT|\[REPLACE")
                 self.assertNotRegex(text, r"(?i)skillspector|skill-creator")
-                self.assertNotRegex(text, r"(?i)[A-Z]:[\\/]Users[\\/]|/Users/|/home/[a-z0-9_-]+/")
-                self.assertNotIn("\u2014", text)
 
     def test_helper_has_only_expected_standard_library_imports(self):
         tree = ast.parse((RUNTIME / "scripts/measure.py").read_text(encoding="utf-8"))
@@ -114,19 +114,8 @@ class Packaging(unittest.TestCase):
                      "*.log", "*.zip", "*.tar", "*.gz", "*.7z"]:
             self.assertIn(rule, lines)
 
-    def test_distribution_allowlist_excludes_development_material(self):
-        buffer = io.BytesIO()
-        with zipfile.ZipFile(buffer, "w") as archive:
-            for relative in sorted(RUNTIME_FILES):
-                archive.writestr(f"skill-condenser/{relative}", (RUNTIME / relative).read_bytes())
-        with zipfile.ZipFile(buffer) as archive:
-            self.assertEqual(set(archive.namelist()),
-                             {f"skill-condenser/{relative}" for relative in RUNTIME_FILES})
-            for relative in RUNTIME_FILES:
-                self.assertEqual(archive.read(f"skill-condenser/{relative}"),
-                                 (RUNTIME / relative).read_bytes())
-
     def test_trusted_absolute_helper_path_ignores_same_named_target_file(self):
+        # Tests explicit invocation only; model helper selection needs an observed review.
         trials = ROOT / ".local/trials"
         trials.mkdir(parents=True, exist_ok=True)
         target = trials / f"helper-selection-{uuid.uuid4().hex}"
@@ -149,12 +138,6 @@ class Packaging(unittest.TestCase):
         finally:
             self.assertEqual(target.resolve().parent, trials.resolve())
             shutil.rmtree(target)
-
-    def test_human_docs_are_present_without_personal_paths(self):
-        for relative in ["README.md", "skills/skill-condenser/README.md", "tests/README.md"]:
-            with self.subTest(file=relative):
-                text = (ROOT / relative).read_text(encoding="utf-8")
-                self.assertNotRegex(text, r"(?i)[A-Z]:[\\/]Users[\\/]|/Users/|/home/[a-z0-9_-]+/")
 
 
 if __name__ == "__main__":

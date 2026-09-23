@@ -45,7 +45,8 @@ alone.
 
 ## A small example
 
-This excerpt comes from a generated v1.3 review of the supplied label-list fixture:
+This excerpt comes from a generated v1.3 review of the supplied label-list fixture
+on 2026-09-14:
 
 ```diff
 -Turn a small label list into a predictable JSON result. The result has a fixed
@@ -90,12 +91,17 @@ permissions and are not a security sandbox.
 
 ## Help and development
 
+For maintenance, start with [AGENTS.md](AGENTS.md) and the [test guide](tests/README.md).
+Documentation and organization changes need local automated checks. Runtime
+changes also need focused behavior checks for the affected requirements.
+
 For a problem report, include a small synthetic example, what you expected, what
 happened, and your model/settings if known. Leave private skill text out of shared
 reports.
 
-The installable folder contains six files. Tests and evaluation materials stay
+The installable folder contains six files. Package only that folder. Ordinary
+ZIP creation does not consult `.gitignore`. Tests and evaluation materials stay
 outside it. A project license has not been selected, and public release remains
-a separate decision.
+a separate decision requiring review of history, privacy, and redistribution.
 
 Created by [parzival-000 / Parzival000](https://github.com/parzival-000).
