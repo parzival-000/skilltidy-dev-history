@@ -1,9 +1,9 @@
 ---
-name: skill-condenser
+name: skilltidy
 description: Review existing Agent Skill instructions for repetition, wordiness, and conflicting guidance. Propose careful cleanup of a selected skill file, folder's main skill, or section, with a diff before approved changes. Use for skill condensation, not executing the target or general prose editing.
 ---
 
-# Skill Condenser
+# SkillTidy
 
 Clean up bloated Agent Skills while preserving their behavior.
 

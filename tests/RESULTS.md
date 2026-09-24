@@ -20,7 +20,7 @@ checks now cover all maintained guides and runtime files.
 
 Model audits, paired behavior checks, installation/discovery, authoring validator,
 and external scanner: **NOT RUN in this cleanup**. The six runtime files and 14
-fixture input/context files are frozen byte-for-byte. Byte identity supports
+fixture input/context files were unchanged in that cleanup. Byte identity supports
 unchanged inputs, not a universal claim about model behavior.
 
 ## Historical v1.3 evidence, 2026-09-14
@@ -104,7 +104,7 @@ common-invalid-input/no-reference branch is a known coverage gap.
 
 | Date / scope | Recorded result and limit |
 |---|---|
-| 2026-09-10, initial build | 33/33 eventually passed on Windows/Python 3.14.3. An earlier 20-test measurement attempt had 26 setup/cleanup errors from temporary-directory permissions. Inherited workspace permissions fixed the setup without weakening expectations. |
+| 2026-09-10, initial build | 33/33 eventually passed on Windows/Python 3.14.3. An earlier 20-test measurement attempt had 26 setup/cleanup errors from temporary-directory permissions. The setup was corrected without weakening expectations. |
 | 2026-09-10, toy formatter | The 918-to-640-word candidate passed B1-B10 for both versions: 20/20 responses. Two explanation responses met content expectations but did not resolve the reference-read/tool-ban ambiguity. The separate 694-word proposal had no paired behavior validation. Exact model/effort identifiers were unavailable. |
 | 2026-09-10, workflow/reporting | Nine approval scenarios and later focused section/path/audit checks were recorded. Inventories, hashes, and applied diffs supported write outcomes; several tool actions were self-reported. Missing explicit approval questions and an UNCHANGED extra-blank-line display were found, then addressed with focused checks. |
 | 2026-09-10, path order | An earlier reported ordering deviation had unverified chronology. A later supervisor-instrumented read-order check passed, without proving all ordinary sessions follow it. A non-shipped calculation miscounted 251 versus 252 characters; the trusted helper cross-check was correct. |
@@ -128,8 +128,8 @@ received a source-based erratum before scoring, applied equally to both versions
 
 The 48 behavior responses validate their exact earlier generated candidates.
 Later reviewer refinements did not receive another complete fresh-candidate
-matrix. A third-party coauthoring sample retained unresolved tool wording and
-lacked redistribution clearance. Its raw content remains private.
+matrix. A separate third-party sample retained unresolved tool wording and
+is not redistributed.
 
 A historical screenshot reported SkillSpector 2.11.1, exit 1, MEDIUM/CAUTION and
 83.3% coverage. It described an incomplete scan and no confirmed vulnerability

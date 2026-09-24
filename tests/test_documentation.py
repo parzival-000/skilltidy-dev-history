@@ -9,7 +9,7 @@ import uuid
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RUNTIME = ROOT / "skills/skill-condenser"
+RUNTIME = ROOT / "skills/skilltidy"
 DOCS = [
     ROOT / "README.md", ROOT / "AGENTS.md", ROOT / "fixtures/README.md",
     ROOT / "tests/README.md", ROOT / "tests/RESULTS.md",

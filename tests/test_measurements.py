@@ -11,7 +11,7 @@ import uuid
 
 
 ROOT = Path(__file__).resolve().parents[1]
-HELPER = ROOT / "skills/skill-condenser/scripts/measure.py"
+HELPER = ROOT / "skills/skilltidy/scripts/measure.py"
 TRIALS = ROOT / ".local/trials"
 spec = importlib.util.spec_from_file_location("condenser_measure", HELPER)
 measure = importlib.util.module_from_spec(spec)

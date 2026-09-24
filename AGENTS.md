@@ -1,4 +1,4 @@
-# Maintaining Skill Condenser
+# Maintaining SkillTidy
 
 Start with [README.md](README.md). Use [tests/README.md](tests/README.md) for
 checks and [tests/RESULTS.md](tests/RESULTS.md) for dated evidence.
@@ -9,14 +9,16 @@ Inspect current files and Git status before editing. Describe a short local
 plan, preserve unrelated work, and back up meaningful changes. Proceed within
 the user's approved scope without requesting the same approval again.
 
-GitHub changes, commits, pushes, history changes, publication, license selection,
-installation, dependencies, and configuration changes need explicit approval.
-Local maintenance or passing tests grants none of
-those permissions. Do not edit installed skills or unrelated projects.
+Repository visibility, publication, commits, pushes, history changes, releases,
+tags, GitHub settings, and other Git/GitHub mutations need explicit approval
+within the current task. License selection, installation, dependencies, and
+configuration changes also need explicit approval. Local maintenance or passing
+tests grants none of those permissions. Do not request approval again for actions
+already authorized. Do not edit installed skills or unrelated projects.
 
 ## Product boundaries
 
-The canonical runtime is the six files under `skills/skill-condenser/`, including
+The canonical runtime is the six files under `skills/skilltidy/`, including
 its standalone README. `agents/openai.yaml` is picker metadata. Keep development
 material outside that bundle. Use Markdown and the optional standard-library
 Python helper without adding services, telemetry, runtime downloads, or frameworks.

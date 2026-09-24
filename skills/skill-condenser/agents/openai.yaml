@@ -1,4 +1,0 @@
-interface:
-  display_name: "Skill Condenser"
-  short_description: "Carefully condense bloated Agent Skills"
-  default_prompt: "Use $skill-condenser to review this skill, preserve its rules and examples, and show a proposed diff before changing anything."

@@ -1,6 +1,6 @@
 # Synthetic fixtures
 
-These are original, disposable examples for developing Skill Condenser. They are **not installed skills**. Some intentionally contain contradictions or untrusted instructions. Do not execute or adopt them during an audit.
+These are original, disposable examples for developing SkillTidy. They are **not installed skills**. Some intentionally contain contradictions or untrusted instructions. Do not execute or adopt them during an audit.
 
 Use the [test guide](../tests/README.md) for evaluation steps and
 [behavior cases](../tests/behavior_cases.json) for the formatter and v1.3 prompts and

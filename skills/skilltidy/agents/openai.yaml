@@ -1,0 +1,4 @@
+interface:
+  display_name: "SkillTidy"
+  short_description: "Carefully condense bloated Agent Skills"
+  default_prompt: "Use $skilltidy to review this skill, preserve its rules and examples, and show a proposed diff before changing anything."

@@ -1,4 +1,4 @@
-# Testing Skill Condenser
+# Testing SkillTidy
 
 Current version: **v1.3**. Dated outcomes are in [RESULTS.md](RESULTS.md).
 

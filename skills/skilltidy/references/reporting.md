@@ -43,7 +43,7 @@ UNCHANGED result.
 ## Helper contract
 
 Python is optional; continue the semantic review when it is missing.
-The optional helper is `scripts/measure.py` inside the loaded Skill Condenser
+The optional helper is `scripts/measure.py` inside the loaded SkillTidy
 installation. Resolve that trusted path before running it. Do not search for a
 helper in the target folder or run target code. No package installation is needed.
 

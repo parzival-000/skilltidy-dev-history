@@ -11,7 +11,7 @@ import uuid
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RUNTIME = ROOT / "skills/skill-condenser"
+RUNTIME = ROOT / "skills/skilltidy"
 RUNTIME_FILES = {
     "SKILL.md", "README.md", "agents/openai.yaml", "references/review-patterns.md",
     "references/reporting.md", "scripts/measure.py",
@@ -48,7 +48,7 @@ class Packaging(unittest.TestCase):
         metadata = {key.strip(): value.strip() for key, value in fields}
         self.assertEqual(len(metadata), len(fields), "duplicate metadata fields")
         self.assertEqual(set(metadata), {"name", "description"})
-        self.assertEqual(metadata["name"], "skill-condenser")
+        self.assertEqual(metadata["name"], "skilltidy")
         self.assertTrue(metadata["description"].strip())
 
     def test_picker_metadata_has_only_simple_interface_strings(self):
@@ -61,9 +61,9 @@ class Packaging(unittest.TestCase):
             fields[key] = json.loads(value)
             self.assertIsInstance(fields[key], str)
         self.assertEqual(set(fields), {"display_name", "short_description", "default_prompt"})
-        self.assertEqual(fields["display_name"], "Skill Condenser")
+        self.assertEqual(fields["display_name"], "SkillTidy")
         self.assertTrue(25 <= len(fields["short_description"]) <= 64)
-        self.assertIn("$skill-condenser", fields["default_prompt"])
+        self.assertIn("$skilltidy", fields["default_prompt"])
 
     def test_markdown_references_resolve_inside_runtime(self):
         links_seen = set()

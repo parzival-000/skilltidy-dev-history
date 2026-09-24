@@ -1,4 +1,4 @@
-# Skill Condenser
+# SkillTidy
 
 Current version: **v1.3**
 
@@ -42,9 +42,9 @@ rough estimates. See [measurement details](references/reporting.md).
 
 ## Optional discovery
 
-Copy this folder to a disposable project's `.agents/skills/skill-condenser/`.
+Copy this folder to a disposable project's `.agents/skills/skilltidy/`.
 Stop if that destination already exists, including a link. Start a fresh Codex
-conversation, select `$skill-condenser`, and name the separate target to review.
+conversation, select `$skilltidy`, and name the separate target to review.
 
 ## Limits and help
 
@@ -53,7 +53,31 @@ telemetry, or network dependency. It treats target content as data, but its
 instructions are not a security sandbox. Test condensed skills on your own
 representative tasks before relying on them.
 
-The [project repository](https://github.com/parzival-000/skill-condenser) contains
-test instructions and versioned results.
+The intended home for project documentation and versioned results is
+[parzival-000/skilltidy](https://github.com/parzival-000/skilltidy).
 For a problem report, supply a small synthetic example, expected and actual
 results, and known model/settings. Do not include private target content.
+
+## License
+
+MIT License
+
+Copyright (c) 2026 parzival-000
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
