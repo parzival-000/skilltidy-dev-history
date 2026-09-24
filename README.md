@@ -1,3 +1,8 @@
+Historical development record for [SkillTidy](https://github.com/parzival-000/skilltidy).
+Local transfer artifacts, temporary evaluation files, and private authoring material
+are intentionally not included. For the current project and support, use the main
+SkillTidy repository. This repository is a historical snapshot and is not maintained.
+
 # SkillTidy
 
 Current version: **v1.3**
@@ -168,6 +173,6 @@ reports.
 
 Licensed under the [MIT License](LICENSE).
 
-Planned public repository: [parzival-000/skilltidy](https://github.com/parzival-000/skilltidy).
+Active project: [parzival-000/skilltidy](https://github.com/parzival-000/skilltidy).
 
 Created by [parzival-000 / Parzival000](https://github.com/parzival-000).
